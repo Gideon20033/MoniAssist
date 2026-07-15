@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Daily Tasks - MoniAssist</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f8ff;
+}
+
+.header{
+background:#0057ff;
+color:white;
+padding:20px;
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.header a{
+color:white;
+text-decoration:none;
+font-size:20px;
+}
+
+.container{
+width:92%;
+max-width:500px;
+margin:20px auto;
+}
+
+.reward{
+background:#0057ff;
+color:white;
+padding:20px;
+border-radius:15px;
+text-align:center;
+margin-bottom:20px;
+}
+
+.reward h2{
+margin-bottom:10px;
+}
+
+.task{
+background:white;
+padding:18px;
+border-radius:15px;
+margin-bottom:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+
+.task button{
+background:#0057ff;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.task button:disabled{
+background:gray;
+cursor:not-allowed;
+}
+
+#claimBtn{
+width:100%;
+padding:15px;
+font-size:17px;
+border:none;
+border-radius:10px;
+background:green;
+color:white;
+margin-top:20px;
+cursor:pointer;
+}
+
+#claimBtn:disabled{
+background:gray;
+cursor:not-allowed;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<a href="dashboard.html">
+<i class="fas fa-arrow-left"></i>
+</a>
+
+<h2>Daily Tasks</h2>
+
+</div>
+
+<div class="container">
+
+<div class="reward">
+
+<h2>Daily Reward</h2>
+
+<p>Complete all 5 tasks to claim <b>₦100</b></p>
+
+</div>
+
+<div class="task">
+<span>✅ Daily Check-in</span>
+<button class="taskBtn">Done</button>
+</div>
+
+<div class="task">
+<span>✅ Visit Investment Plans</span>
+<button class="taskBtn">Done</button>
+</div>
+
+<div class="task">
+<span>✅ Visit Team Page</span>
+<button class="taskBtn">Done</button>
+</div>
+
+<div class="task">
+<span>✅ View Profile</span>
+<button class="taskBtn">Done</button>
+</div>
+
+<div class="task">
+<span>✅ Visit Support Page</span>
+<button class="taskBtn">Done</button>
+</div>
+
+<button id="claimBtn" disabled>
+Claim ₦100
+</button>
+
+</div>
+
+<script type="module" src="tasks.js"></script>
+
+</body>
+</html>
