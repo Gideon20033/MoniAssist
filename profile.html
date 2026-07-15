@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Profile - MoniAssist</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f8ff;
+}
+
+
+/* Header */
+
+.header{
+
+    background:#0057ff;
+    color:white;
+    padding:20px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+}
+
+
+.header a{
+
+    color:white;
+    text-decoration:none;
+    font-size:22px;
+
+}
+
+
+.header h2{
+
+    font-size:20px;
+
+}
+
+
+
+/* Container */
+
+.container{
+
+    width:92%;
+    max-width:420px;
+    margin:25px auto;
+
+}
+
+
+
+/* Profile Card */
+
+.profile-card{
+
+    background:white;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+
+}
+
+
+
+/* Top Profile */
+
+.profile-top{
+
+    background:#0057ff;
+    color:white;
+    padding:30px;
+    text-align:center;
+
+}
+
+
+
+.avatar{
+
+    width:90px;
+    height:90px;
+    margin:auto;
+    border-radius:50%;
+    background:white;
+    color:#0057ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:40px;
+
+}
+
+
+.profile-top h2{
+
+    margin-top:15px;
+    color:white;
+
+}
+
+
+
+/* Information */
+
+.info{
+
+    padding:20px;
+
+}
+
+
+.item{
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:15px 0;
+    border-bottom:1px solid #eee;
+
+}
+
+
+.item:last-child{
+
+    border-bottom:none;
+
+}
+
+
+.item i{
+
+    width:35px;
+    height:35px;
+    background:#e8f0ff;
+    color:#0057ff;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+}
+
+
+.text h4{
+
+    font-size:14px;
+    color:#777;
+
+}
+
+
+.text p{
+
+    font-size:16px;
+    margin-top:3px;
+
+}
+
+
+
+/* Button */
+
+button{
+
+    width:90%;
+    margin:0 auto 20px;
+    display:block;
+    padding:15px;
+    background:#0057ff;
+    color:white;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:bold;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="header">
+
+<a href="dashboard.html">
+
+<i class="fas fa-arrow-left"></i>
+
+</a>
+
+<h2>Profile</h2>
+
+</div>
+
+
+
+
+<div class="container">
+
+
+<div class="profile-card">
+
+
+<div class="profile-top">
+
+
+<div class="avatar">
+
+<i class="fas fa-user"></i>
+
+</div>
+
+
+<h2>User Name</h2>
+
+<p>MoniAssist Account</p>
+
+
+</div>
+
+
+
+
+<div class="info">
+
+
+<div class="item">
+
+<i class="fas fa-user"></i>
+
+<div class="text">
+
+<h4>Full Name</h4>
+
+<p>User</p>
+
+</div>
+
+</div>
+
+
+
+
+<div class="item">
+
+<i class="fas fa-phone"></i>
+
+<div class="text">
+
+<h4>Phone</h4>
+
+<p>07000000000</p>
+
+</div>
+
+</div>
+
+
+
+
+<div class="item">
+
+<i class="fas fa-envelope"></i>
+
+<div class="text">
+
+<h4>Email</h4>
+
+<p>user@gmail.com</p>
+
+</div>
+
+</div>
+
+
+
+
+<div class="item">
+
+<i class="fas fa-wallet"></i>
+
+<div class="text">
+
+<h4>Account Balance</h4>
+
+<p>₦0.00</p>
+
+</div>
+
+</div>
+
+
+
+
+<div class="item">
+
+<i class="fas fa-id-card"></i>
+
+<div class="text">
+
+<h4>Account Number</h4>
+
+<p>Generate Later</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<button>
+
+<i class="fas fa-edit"></i>
+
+Edit Profile
+
+</button>
+
+
+
+</div>
+
+
+</div>
+
+<script type="module" src="profile.js"></script>
+
+</body>
+
+  </html>
