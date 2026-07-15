@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deposit - MoniAssist</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f8ff;
+}
+
+.header{
+    background:#0057ff;
+    color:white;
+    padding:20px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.header a{
+    color:white;
+    text-decoration:none;
+    font-size:20px;
+}
+
+.container{
+    width:90%;
+    max-width:400px;
+    margin:30px auto;
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+h2{
+    text-align:center;
+    color:#0057ff;
+    margin-bottom:20px;
+}
+
+.info{
+    background:#eef5ff;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+.info p{
+    margin:8px 0;
+}
+
+.input-group{
+    margin-bottom:15px;
+}
+
+label{
+    display:block;
+    margin-bottom:7px;
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    border:1px solid #ccc;
+    border-radius:10px;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    background:#0057ff;
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="header">
+
+<a href="dashboard.html">
+<i class="fas fa-arrow-left"></i>
+</a>
+
+<h2>Deposit</h2>
+
+</header>
+
+
+<div class="container">
+
+<h2>Make Deposit</h2>
+
+
+<div class="info">
+
+<p><b>Bank Name:</b> Your Bank</p>
+
+<p><b>Account Name:</b> MoniAssist</p>
+
+<p><b>Account Number:</b> 0000000000</p>
+
+</div>
+
+
+<form>
+
+<div class="input-group">
+
+<label>Amount (₦)</label>
+
+<input type="number" placeholder="Enter deposit amount">
+
+</div>
+
+
+<div class="input-group">
+
+<label>Payment Reference</label>
+
+<input type="text" placeholder="Enter transaction reference">
+
+</div>
+
+
+<div class="input-group">
+
+<label>Upload Payment Proof</label>
+
+<input type="file">
+
+</div>
+
+
+<button type="submit">
+Submit Deposit
+</button>
+
+
+</form>
+
+
+</div>
+
+<script type="module" src="deposit.js"></script>
+
+</body>
+</html>
