@@ -19,7 +19,6 @@ body{
     background:#f5f8ff;
 }
 
-/* Header */
 .header{
     background:#0057ff;
     color:white;
@@ -38,7 +37,6 @@ body{
     text-decoration:none;
 }
 
-/* Balance Card */
 .balance{
     margin:20px;
     background:linear-gradient(135deg,#0057ff,#00aaff);
@@ -56,7 +54,10 @@ body{
     font-size:35px;
 }
 
-/* Quick Actions */
+.balance p{
+    margin-top:8px;
+}
+
 .actions{
     display:grid;
     grid-template-columns:repeat(2,1fr);
@@ -81,9 +82,9 @@ body{
 
 .action-card p{
     color:#333;
+    font-weight:bold;
 }
 
-/* Menu */
 .menu{
     margin:20px;
     background:white;
@@ -100,6 +101,10 @@ body{
     color:#333;
 }
 
+.menu a:last-child{
+    border-bottom:none;
+}
+
 .menu i{
     color:#0057ff;
     margin-right:15px;
@@ -111,7 +116,6 @@ footer{
     padding:20px;
     color:#777;
 }
-
 </style>
 
 </head>
@@ -119,28 +123,18 @@ footer{
 <body>
 
 <header class="header">
-
-<h2>
-<i class="fas fa-wallet"></i> MoniAssist
-</h2>
+<h2><i class="fas fa-wallet"></i> MoniAssist</h2>
 
 <a href="login.html" class="logout">
 <i class="fas fa-sign-out-alt"></i>
 </a>
-
 </header>
 
-
 <section class="balance">
-
 <h3>Available Balance</h3>
-
-<h1>₦0.00</h1>
-
-<p>Welcome back, User</p>
-
+<h1 id="balance">₦0.00</h1>
+<p id="welcome">Welcome back, User</p>
 </section>
-
 
 <div class="actions">
 
@@ -149,18 +143,15 @@ footer{
 <p>Deposit</p>
 </a>
 
-
 <a href="withdrawal.html" class="action-card">
 <i class="fas fa-arrow-up"></i>
 <p>Withdraw</p>
 </a>
 
-
-<a href="plans.html" class="action-card">
-<i class="fas fa-chart-line"></i>
-<p>Investment Plans</p>
+<a href="vip.html" class="action-card">
+<i class="fas fa-crown"></i>
+<p>VIP</p>
 </a>
-
 
 <a href="history.html" class="action-card">
 <i class="fas fa-history"></i>
@@ -168,7 +159,6 @@ footer{
 </a>
 
 </div>
-
 
 <div class="menu">
 
@@ -200,12 +190,10 @@ Settings
 </div>
 
 <footer>
-
 © 2026 MoniAssist
-
 </footer>
 
 <script type="module" src="dashboard.js"></script>
 
 </body>
-  </html>
+</html>
