@@ -1,41 +1,58 @@
-import { auth, db } from "./firebase.js";
+// firebase.js
 
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { initializeApp } 
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-onAuthStateChanged(auth, async (user) => {
-    if (!user) {
-        window.location.href = "login.html";
-        return;
-    }
+import { getAuth } 
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-    try {
-        const userRef = doc(db, "users", user.uid);
-        const userSnap = await getDoc(userRef);
 
-        if (userSnap.exists()) {
-            const data = userSnap.data();
+import { getFirestore } 
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-            const userName = document.getElementById("userName");
-            const balance = document.getElementById("balance");
-            const accountNumber = document.getElementById("accountNumber");
 
-            if (userName) {
-                userName.textContent = data.Name || "User";
-            }
 
-            if (balance) {
-                balance.textContent = "₦" + (data.Balance ?? 0);
-            }
+// Firebase Configuration
 
-            if (accountNumber) {
-                accountNumber.textContent = data.Accountnumber || "N/A";
-            }
-        } else {
-            console.log("User document not found.");
-        }
-    } catch (error) {
-        console.error("Error loading user data:", error);
-    }
-});
+const firebaseConfig = {
+
+apiKey: "AIzaSyDdNbon5tkIxs1GF2hA036NtGyQVfT2TOE",
+
+authDomain: "moniassist-102d4.firebaseapp.com",
+
+projectId: "moniassist-102d4",
+
+storageBucket: "moniassist-102d4.firebasestorage.app",
+
+messagingSenderId: "247401495099",
+
+appId: "1:247401495099:web:1f889506c4780d2a56fa1e",
+
+measurementId: "G-C5R75XZ12T"
+
+};
+
+
+
+// Initialize Firebase
+
+const app = initializeApp(firebaseConfig);
+
+
+
+// Authentication
+
+const auth = getAuth(app);
+
+
+
+// Firestore Database
+
+const db = getFirestore(app);
+
+
+
+// Export for other files
+
+export { auth, db };
