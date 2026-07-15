@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard - MoniAssist</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f8ff;
+}
+
+/* Header */
+.header{
+    background:#0057ff;
+    color:white;
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.header h2{
+    font-size:22px;
+}
+
+.logout{
+    color:white;
+    text-decoration:none;
+}
+
+/* Balance Card */
+.balance{
+    margin:20px;
+    background:linear-gradient(135deg,#0057ff,#00aaff);
+    color:white;
+    padding:25px;
+    border-radius:20px;
+}
+
+.balance h3{
+    font-size:16px;
+}
+
+.balance h1{
+    margin-top:15px;
+    font-size:35px;
+}
+
+/* Quick Actions */
+.actions{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    padding:20px;
+}
+
+.action-card{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    text-decoration:none;
+    color:#0057ff;
+}
+
+.action-card i{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.action-card p{
+    color:#333;
+}
+
+/* Menu */
+.menu{
+    margin:20px;
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+}
+
+.menu a{
+    display:flex;
+    align-items:center;
+    padding:18px;
+    border-bottom:1px solid #eee;
+    text-decoration:none;
+    color:#333;
+}
+
+.menu i{
+    color:#0057ff;
+    margin-right:15px;
+    width:25px;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    color:#777;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="header">
+
+<h2>
+<i class="fas fa-wallet"></i> MoniAssist
+</h2>
+
+<a href="login.html" class="logout">
+<i class="fas fa-sign-out-alt"></i>
+</a>
+
+</header>
+
+
+<section class="balance">
+
+<h3>Available Balance</h3>
+
+<h1>₦0.00</h1>
+
+<p>Welcome back, User</p>
+
+</section>
+
+
+<div class="actions">
+
+<a href="deposit.html" class="action-card">
+<i class="fas fa-arrow-down"></i>
+<p>Deposit</p>
+</a>
+
+
+<a href="withdrawal.html" class="action-card">
+<i class="fas fa-arrow-up"></i>
+<p>Withdraw</p>
+</a>
+
+
+<a href="plans.html" class="action-card">
+<i class="fas fa-chart-line"></i>
+<p>Investment Plans</p>
+</a>
+
+
+<a href="history.html" class="action-card">
+<i class="fas fa-history"></i>
+<p>History</p>
+</a>
+
+</div>
+
+
+<div class="menu">
+
+<a href="profile.html">
+<i class="fas fa-user"></i>
+Profile
+</a>
+
+<a href="referral.html">
+<i class="fas fa-users"></i>
+Referral
+</a>
+
+<a href="support.html">
+<i class="fas fa-headset"></i>
+Support
+</a>
+
+<a href="settings.html">
+<i class="fas fa-cog"></i>
+Settings
+</a>
+
+</div>
+
+
+<footer>
+
+© 2026 MoniAssist
+
+</footer>
+
+<script type="module" src="dashboard.js"></script>
+
+</body>
+  </html>
