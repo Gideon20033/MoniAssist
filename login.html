@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - MoniAssist</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f8ff;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+}
+
+.container{
+width:100%;
+max-width:400px;
+background:#fff;
+padding:25px;
+border-radius:20px;
+box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
+
+.logo{
+text-align:center;
+font-size:45px;
+color:#0057ff;
+margin-bottom:10px;
+}
+
+h2{
+text-align:center;
+color:#0057ff;
+margin-bottom:20px;
+}
+
+.input-group{
+margin-bottom:15px;
+}
+
+.input-group label{
+display:block;
+margin-bottom:6px;
+font-weight:bold;
+}
+
+.input-group input{
+width:100%;
+padding:14px;
+border:1px solid #ccc;
+border-radius:10px;
+font-size:15px;
+outline:none;
+}
+
+.input-group input:focus{
+border-color:#0057ff;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#0057ff;
+color:#fff;
+border:none;
+border-radius:10px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+background:#0045cc;
+}
+
+.links{
+display:flex;
+justify-content:space-between;
+margin-top:15px;
+font-size:14px;
+}
+
+.links a{
+text-decoration:none;
+color:#0057ff;
+font-weight:bold;
+}
+
+.bottom{
+margin-top:20px;
+text-align:center;
+}
+
+.bottom a{
+text-decoration:none;
+color:#0057ff;
+font-weight:bold;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<div class="logo">
+<i class="fas fa-wallet"></i>
+</div>
+
+<h2>Login</h2>
+
+<form id="loginForm">
+
+<div class="input-group">
+<label>Email Address</label>
+<input type="email" id="email" placeholder="Enter your email" required>
+</div>
+
+<div class="input-group">
+<label>Password</label>
+<input type="password" id="password" placeholder="Enter your password" required>
+</div>
+
+<button type="submit">
+Login
+</button>
+
+<div class="links">
+<a href="#">Forgot Password?</a>
+</div>
+
+</form>
+
+<div class="bottom">
+Don't have an account?
+<a href="register.html">Create Account</a>
+</div>
+
+</div>
+</form>
+
+
+<script type="module">
+
+import { auth } from "./firebase.js";
+
+import { 
+signInWithEmailAndPassword 
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+const loginForm = document.getElementById("loginForm");
+
+
+loginForm.addEventListener("submit", async (e)=>{
+
+e.preventDefault();
+
+const email = document.getElementById("email").value;
+const password = document.getElementById("password").value;
+
+
+try{
+
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+alert("Login successful");
+
+window.location.href="dashboard.html";
+
+
+}catch(error){
+
+alert(error.message);
+
+}
+
+});
+
+</script>
+
+  </body>
