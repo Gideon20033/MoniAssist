@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>History - MoniAssist</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f8ff;
+}
+
+
+/* Header */
+
+.header{
+    background:#0057ff;
+    color:white;
+    padding:20px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.header a{
+    color:white;
+    text-decoration:none;
+    font-size:22px;
+}
+
+.header h2{
+    color:white;
+    font-size:20px;
+}
+
+
+/* Container */
+
+.container{
+    width:92%;
+    max-width:450px;
+    margin:25px auto;
+}
+
+
+/* Title */
+
+.title{
+    text-align:center;
+    color:#0057ff;
+    margin-bottom:20px;
+}
+
+
+/* Cards */
+
+.transaction{
+
+    background:white;
+    padding:18px;
+    border-radius:18px;
+    margin-bottom:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+
+}
+
+
+.left{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+
+.icon{
+
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:#e8f0ff;
+    color:#0057ff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:20px;
+
+}
+
+
+.details h3{
+    font-size:16px;
+}
+
+
+.details p{
+    color:#777;
+    font-size:13px;
+    margin-top:5px;
+}
+
+
+.amount{
+
+    color:#0057ff;
+    font-weight:bold;
+
+}
+
+
+
+/* Bottom Navigation */
+
+.bottom-nav{
+
+    position:fixed;
+    bottom:0;
+    width:100%;
+    background:white;
+    display:flex;
+    justify-content:space-around;
+    padding:15px;
+    box-shadow:0 -2px 10px #ddd;
+
+}
+
+
+.bottom-nav a{
+
+    color:#0057ff;
+    text-decoration:none;
+    text-align:center;
+    font-size:13px;
+
+}
+
+
+.bottom-nav i{
+
+    display:block;
+    font-size:20px;
+    margin-bottom:5px;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="header">
+
+<a href="dashboard.html">
+<i class="fas fa-arrow-left"></i>
+</a>
+
+<h2>History</h2>
+
+</div>
+
+
+
+<div class="container">
+
+
+<h2 class="title">
+Transaction History
+</h2>
+
+
+
+<div class="transaction">
+
+<div class="left">
+
+<div class="icon">
+<i class="fas fa-wallet"></i>
+</div>
+
+<div class="details">
+
+<h3>Deposit</h3>
+
+<p>No deposit records yet</p>
+
+</div>
+
+</div>
+
+
+<div class="amount">
+₦0.00
+</div>
+
+</div>
+
+
+
+
+<div class="transaction">
+
+<div class="left">
+
+<div class="icon">
+<i class="fas fa-chart-line"></i>
+</div>
+
+
+<div class="details">
+
+<h3>Investment</h3>
+
+<p>No investment records yet</p>
+
+</div>
+
+</div>
+
+
+<div class="amount">
+₦0.00
+</div>
+
+</div>
+
+
+
+
+<div class="transaction">
+
+<div class="left">
+
+<div class="icon">
+<i class="fas fa-money-bill-transfer"></i>
+</div>
+
+
+<div class="details">
+
+<h3>Withdrawal</h3>
+
+<p>No withdrawal records yet</p>
+
+</div>
+
+</div>
+
+
+<div class="amount">
+₦0.00
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+
+<div class="bottom-nav">
+
+
+<a href="dashboard.html">
+
+<i class="fas fa-home"></i>
+
+Home
+
+</a>
+
+
+
+<a href="withdrawal.html">
+
+<i class="fas fa-money-bill"></i>
+
+Withdraw
+
+</a>
+
+
+
+<a href="settings.html">
+
+<i class="fas fa-user"></i>
+
+Settings
+
+</a>
+
+
+</div>
+
+
+
+</body>
+
+  </html>
