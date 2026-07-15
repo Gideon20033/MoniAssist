@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Withdraw - MoniAssist</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f8ff;
+}
+
+
+/* Header */
+
+.header{
+    background:#0057ff;
+    color:white;
+    padding:20px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.header a{
+    color:white;
+    text-decoration:none;
+    font-size:22px;
+}
+
+.header h2{
+    font-size:20px;
+}
+
+
+/* Main */
+
+.container{
+    width:92%;
+    max-width:420px;
+    margin:25px auto;
+}
+
+
+/* Balance */
+
+.balance{
+    background:#0057ff;
+    color:white;
+    padding:25px;
+    border-radius:20px;
+    margin-bottom:20px;
+}
+
+.balance p{
+    font-size:14px;
+}
+
+.balance h1{
+    margin-top:10px;
+}
+
+
+
+/* Form */
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+
+.card h2{
+    text-align:center;
+    color:#0057ff;
+    margin-bottom:20px;
+}
+
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+
+input{
+    width:100%;
+    padding:15px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    margin-bottom:15px;
+}
+
+
+button{
+
+    width:100%;
+    padding:15px;
+    background:#0057ff;
+    color:white;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:bold;
+
+}
+
+
+
+/* Notice */
+
+.notice{
+
+    margin-top:20px;
+    background:#e8f0ff;
+    padding:15px;
+    border-radius:12px;
+    font-size:14px;
+
+}
+
+
+
+/* Bottom Navigation */
+
+.bottom-nav{
+
+    position:fixed;
+    bottom:0;
+    width:100%;
+    background:white;
+    display:flex;
+    justify-content:space-around;
+    padding:15px;
+    box-shadow:0 -2px 10px #ddd;
+
+}
+
+
+.bottom-nav a{
+
+    color:#0057ff;
+    text-decoration:none;
+    text-align:center;
+    font-size:13px;
+
+}
+
+
+.bottom-nav i{
+
+    display:block;
+    font-size:20px;
+    margin-bottom:5px;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="header">
+
+<a href="dashboard.html">
+<i class="fas fa-arrow-left"></i>
+</a>
+
+<h2>Withdraw</h2>
+
+</div>
+
+
+
+<div class="container">
+
+
+<div class="balance">
+
+<p>Available Balance</p>
+
+<h1>₦0.00</h1>
+
+</div>
+
+
+
+
+<div class="card">
+
+
+<h2>Withdrawal Request</h2>
+
+
+<label>Amount</label>
+<input type="number" id="amount" placeholder="Enter amount">
+
+<label>Bank Name</label>
+<input type="text" id="bankName" placeholder="Enter bank name">
+
+<label>Account Name</label>
+<input type="text" id="accountName" placeholder="Enter account name">
+
+<label>Account Number</label>
+<input type="number" id="accountNumber" placeholder="Enter account number">
+
+
+<button id="withdrawBtn">
+Submit Withdrawal
+</button>
+
+
+</div>
+
+
+
+
+<div class="notice">
+
+<i class="fas fa-info-circle"></i>
+
+Your withdrawal request will be reviewed by MoniAssist admin.
+
+</div>
+
+
+</div>
+
+
+
+<div class="bottom-nav">
+
+
+<a href="dashboard.html">
+
+<i class="fas fa-home"></i>
+
+Home
+
+</a>
+
+
+
+<a href="history.html">
+
+<i class="fas fa-clock"></i>
+
+History
+
+</a>
+
+
+
+<a href="settings.html">
+
+<i class="fas fa-user"></i>
+
+Settings
+
+</a>
+
+
+</div>
+</div>
+
+<script type="module" src="withdraw.js"></script>
+
+</body>
+</html>
