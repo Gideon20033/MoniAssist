@@ -42,13 +42,27 @@ onAuthStateChanged(auth, async (user) => {
 
         if (data.date === todayKey()) {
 
-            claimBtn.disabled = true;
-            claimBtn.textContent = "Reward Claimed Today";
+    taskButtons.forEach(btn => {
+        btn.disabled = true;
+        btn.textContent = "Completed";
+    });
 
-            taskButtons.forEach(btn => {
-                btn.disabled = true;
-                btn.textContent = "Done";
-            });
+    claimBtn.disabled = true;
+    claimBtn.textContent = "Reward Claimed Today";
+
+    alert("You have already completed today's tasks. Come back after 12:00 AM.");
+
+} else {
+
+    completedTasks = 0;
+
+    taskButtons.forEach(btn => {
+        btn.disabled = false;
+        btn.textContent = "Done";
+    });
+
+    claimBtn.disabled = true;
+    claimBtn.textContent = "Claim ₦100";
 
         }
 
