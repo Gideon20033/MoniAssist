@@ -130,3 +130,14 @@ claimBtn.addEventListener("click", async () => {
     alert("Congratulations! ₦100 has been added to your MoniAssist balance.");
 
 });
+claimBtn.disabled = true;
+
+    claimBtn.textContent = "Reward Claimed Today";
+
+    alert(
+        "Congratulations!\n\n" +
+        "₦" + reward.toLocaleString() +
+        " has been added to your balance."
+    );
+
+});
