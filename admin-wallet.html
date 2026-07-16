@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MoniAssist Admin Wallet</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f7f6;
+}
+
+.header{
+    background:#0066ff;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+.stats{
+    display:flex;
+    gap:10px;
+    padding:20px;
+    flex-wrap:wrap;
+}
+
+.stat{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    flex:1;
+    min-width:140px;
+    text-align:center;
+    box-shadow:0 2px 8px #ccc;
+}
+
+.stat h3{
+    margin:0;
+    color:#0066ff;
+}
+
+.section{
+    padding:20px;
+}
+
+.table-box{
+    background:white;
+    border-radius:10px;
+    overflow:auto;
+    box-shadow:0 2px 8px #ccc;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#0066ff;
+    color:white;
+}
+
+th,td{
+    padding:12px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+}
+
+.back{
+    text-align:center;
+    padding:20px;
+}
+
+.back a{
+    text-decoration:none;
+    color:white;
+    background:#0066ff;
+    padding:12px 25px;
+    border-radius:8px;
+    display:inline-block;
+}
+
+.loading{
+    color:#777;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+<h2>MoniAssist Wallet</h2>
+<p>Finance Management</p>
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<h3 id="totalDeposit" class="loading">₦0</h3>
+<p>Total Deposits</p>
+</div>
+
+<div class="stat">
+<h3 id="totalWithdrawal" class="loading">₦0</h3>
+<p>Total Withdrawals</p>
+</div>
+
+<div class="stat">
+<h3 id="platformBalance" class="loading">₦0</h3>
+<p>Platform Balance</p>
+</div>
+
+<div class="stat">
+<h3 id="totalTransactions" class="loading">0</h3>
+<p>Transactions</p>
+</div>
+
+</div>
+
+<div class="section">
+
+<div class="table-box">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Email</th>
+
+<th>Type</th>
+
+<th>Amount</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody id="walletTable">
+
+<tr>
+
+<td colspan="4">Loading...</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<div class="back">
+
+<a href="admin-dashboard.html">
+← Back to Dashboard
+</a>
+
+</div>
+
+<script type="module" src="admin-wallet.js"></script>
+
+</body>
+</html>
