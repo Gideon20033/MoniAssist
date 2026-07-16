@@ -161,7 +161,9 @@ function loadVIP(){
     });
 
 
-}async function buyVIP(plan){
+}
+
+async function buyVIP(plan){
 
     if(!currentUser){
         alert("Please login first.");
