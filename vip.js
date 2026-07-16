@@ -9,8 +9,6 @@ import {
     getDoc,
     setDoc,
     updateDoc,
-    addDoc,
-    collection,
     Timestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -101,7 +99,7 @@ onAuthStateChanged(auth, (user)=>{
 
     if(!user){
 
-        window.location.href="login.html";
+        window.location.href = "login.html";
         return;
 
     }
@@ -160,14 +158,17 @@ function loadVIP(){
 
     });
 
-
 }
+
+
 
 async function buyVIP(plan){
 
     if(!currentUser){
+
         alert("Please login first.");
         return;
+
     }
 
 
@@ -190,53 +191,16 @@ async function buyVIP(plan){
     const balance = Number(userData.Balance || 0);
 
 
-
     if(balance < plan.investment){
 
-        alert(
-            "Insufficient balance.\nPlease deposit first."
-        );
-
+        alert("Insufficient balance. Please deposit first.");
         return;
 
     }
 
 
 
-    // Check existing VIP
-
-    const vipRef = doc(db,"vip",currentUser.uid);
-
-    const vipSnap = await getDoc(vipRef);
-
-
-
-    if(vipSnap.exists()){
-
-        const oldVIP = vipSnap.data();
-
-
-        if(oldVIP.active === true){
-
-            const confirmUpgrade = confirm(
-                "You already have an active VIP.\nDo you want to upgrade?"
-            );
-
-
-            if(!confirmUpgrade){
-
-                return;
-
-            }
-
-        }
-
-    }
-
-
-
     const newBalance = balance - plan.investment;
-
 
 
     await updateDoc(userRef,{
@@ -248,9 +212,6 @@ async function buyVIP(plan){
 
 
 
-    const purchaseDate = new Date();
-
-
     const expiryDate = new Date();
 
     expiryDate.setDate(
@@ -259,7 +220,7 @@ async function buyVIP(plan){
 
 
 
-    await setDoc(vipRef,{
+    await setDoc(doc(db,"vip",currentUser.uid),{
 
         userId:currentUser.uid,
 
@@ -275,38 +236,13 @@ async function buyVIP(plan){
 
         active:true,
 
-        purchaseDate:Timestamp.fromDate(
-            purchaseDate
-        ),
+        purchaseDate:Timestamp.now(),
 
-        expiryDate:Timestamp.fromDate(
-            expiryDate
-        )
-
+        expiryDate:Timestamp.fromDate(expiryDate)
 
     });
 
 
-                     
-  {
-    vip: "VIP 7",
-    investment: 50000,
-    dailyIncome: 15000,
-    totalIncome: 1350000,
-    duration: 90
-  },
-  {
-    vip: "VIP 8",
-    investment: 70000,
-    dailyIncome: 20000,
-    totalIncome: 1800000,
-    duration: 90
-  },
-  {
-    vip: "VIP 9",
-    investment: 100000,
-    dailyIncome: 30000,
-    totalIncome: 2700000,
-    duration: 90
-  }
-];
+    alert("VIP purchase successful!");
+
+}
