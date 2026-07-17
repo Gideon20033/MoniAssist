@@ -190,14 +190,17 @@ form.addEventListener("submit", async (e) => {
   const accountNumber = "10" + Math.floor(100000 + Math.random() * 900000);
 
   await setDoc(doc(db, "users", user.uid), {
-    Name: name,
-    Phone: phone,
-    Email: email,
-    Role: "User",
-    Balance: 0,
-    Accountnumber: accountNumber,
-    Creatdat: serverTimestamp()
-  });
+  Name: name,
+  Phone: phone,
+  Email: email,
+  Role: "User",
+  Balance: 1000,
+  WelcomeBonus: 1000,
+  HasDeposited: false,
+  HasActiveInvestment: false,
+  Accountnumber: accountNumber,
+  Creatdat: serverTimestamp()
+});
 
   alert("Account created successfully!");
 
