@@ -76,8 +76,10 @@ window.approveDeposit = async function(id, userId, amount) {
         const balance = userData.Balance || 0;
 
         await updateDoc(userRef, {
-            Balance: balance + amount
-        });
+    Balance: balance + amount,
+    HasDeposited: true,
+    HasActiveInvestment: true
+});
 
         await addDoc(collection(db, "transactions"), {
             userId: userId,
