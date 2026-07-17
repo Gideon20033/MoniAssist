@@ -16,6 +16,7 @@ import {
 const withdrawBtn = document.getElementById("withdrawBtn");
 
 let currentUser = null;
+let userData = null;
 
 onAuthStateChanged(auth, async (user) => {
     if (!user) {
@@ -31,24 +32,24 @@ onAuthStateChanged(auth, async (user) => {
         const userSnap = await getDoc(userRef);
 
         if (userSnap.exists()) {
-            const data = userSnap.data();
+            userData = userSnap.data();
 
             const bankName = document.getElementById("bankName");
             const accountName = document.getElementById("accountName");
             const accountNumber = document.getElementById("accountNumber");
 
-            if (data.BankName) {
-                bankName.value = data.BankName;
+            if (userData.BankName) {
+                bankName.value = userData.BankName;
                 bankName.readOnly = true;
             }
 
-            if (data.AccountName) {
-                accountName.value = data.AccountName;
+            if (userData.AccountName) {
+                accountName.value = userData.AccountName;
                 accountName.readOnly = true;
             }
 
-            if (data.AccountNumber) {
-                accountNumber.value = data.AccountNumber;
+            if (userData.AccountNumber) {
+                accountNumber.value = userData.AccountNumber;
                 accountNumber.readOnly = true;
             }
         }
@@ -74,9 +75,15 @@ withdrawBtn.addEventListener("click", async () => {
         return;
     }
 
+    // Block withdrawal until deposit and investment are completed
+    if (!userData.HasDeposited || !userData.HasActiveInvestment) {
+        alert("You must make a deposit and activate an investment before withdrawing your ₦1,000 welcome bonus.");
+        return;
+    }
+
     try {
 
-        // Save bank details to user profile
+        // Save bank details
         await updateDoc(doc(db, "users", currentUser.uid), {
             BankName: bankName,
             AccountName: accountName,
