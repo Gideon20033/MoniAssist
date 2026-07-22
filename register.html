@@ -157,57 +157,103 @@ import {
 import {
   doc,
   setDoc,
-  serverTimestamp
+  serverTimestamp,
+  collection,
+  query,
+  where,
+  getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+// Get referral code from URL
+const urlParams = new URLSearchParams(window.location.search);
+const referredByCode = urlParams.get("ref") || "";
 
 const form = document.getElementById("registerForm");
 
 form.addEventListener("submit", async (e) => {
-  e.preventDefault();
 
-  const name = document.getElementById("name").value.trim();
-  const phone = document.getElementById("phone").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
-  const confirmPassword = document.getElementById("confirmPassword").value;
+e.preventDefault();
 
-  if (password !== confirmPassword) {
-    alert("Passwords do not match!");
-    return;
-  }
+const name = document.getElementById("name").value.trim();
+const phone = document.getElementById("phone").value.trim();
+const email = document.getElementById("email").value.trim();
+const password = document.getElementById("password").value;
+const confirmPassword = document.getElementById("confirmPassword").value;
 
-  try {
+if(password !== confirmPassword){
+alert("Passwords do not match!");
+return;
+}
 
-  const userCredential = await createUserWithEmailAndPassword(
-    auth,
-    email,
-    password
-  );
+try{
 
-  const user = userCredential.user;
+const userCredential = await createUserWithEmailAndPassword(
+auth,
+email,
+password
+);
 
-  // Generate an 8-digit account number
-  const accountNumber = "10" + Math.floor(100000 + Math.random() * 900000);
+const user = userCredential.user;
 
-  await setDoc(doc(db, "users", user.uid), {
-  Name: name,
-  Phone: phone,
-  Email: email,
-  Role: "User",
-  Balance: 1000,
-  WelcomeBonus: 1000,
-  HasDeposited: false,
-  HasActiveInvestment: false,
-  Accountnumber: accountNumber,
-  Creatdat: serverTimestamp()
+// Generate Account Number
+const accountNumber =
+"10" + Math.floor(100000 + Math.random() * 900000);
+
+// Generate Referral Code
+const referralCode =
+"MA" + Math.random().toString(36).substring(2,8).toUpperCase();
+
+// Check if referral code exists
+let referredByUID = "";
+
+if(referredByCode){
+
+const q = query(
+collection(db,"users"),
+where("ReferralCode","==",referredByCode)
+);
+
+const snapshot = await getDocs(q);
+
+if(!snapshot.empty){
+referredByUID = snapshot.docs[0].id;
+}
+
+}await setDoc(doc(db, "users", user.uid), {
+
+Name: name,
+Phone: phone,
+Email: email,
+Role: "User",
+
+Balance: 1000,
+WelcomeBonus: 1000,
+
+HasDeposited: false,
+HasActiveInvestment: false,
+
+Accountnumber: accountNumber,
+
+// Referral System
+ReferralCode: referralCode,
+ReferredBy: referredByUID,
+ReferralBonus: 0,
+ReferralCount: 0,
+
+Creatdat: serverTimestamp()
+
 });
 
-  alert("Account created successfully!");
+alert("Account created successfully!");
 
-  window.location.assign("./dashboard.html");
+window.location.href = "./dashboard.html";
 
-} catch (error) {
-  alert(error.message);
+}catch(error){
+
+console.error(error);
+
+alert(error.message);
+
 }
 
 });
