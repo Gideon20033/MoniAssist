@@ -1,3 +1,7 @@
+import { protectAdminPage } from "./admin-auth.js";
+
+protectAdminPage();
+
 import { db } from "./firebase.js";
 
 import {
@@ -73,18 +77,18 @@ window.approveDeposit = async function(id, userId, amount) {
     if (userSnap.exists()) {
 
         const userData = userSnap.data();
-        const balance = userData.Balance || 0;
+        const balance = Number(userData.Balance || 0);
 
         await updateDoc(userRef, {
-    Balance: balance + amount,
-    HasDeposited: true,
-    HasActiveInvestment: true
-});
+            Balance: balance + Number(amount),
+            HasDeposited: true,
+            HasActiveInvestment: true
+        });
 
         await addDoc(collection(db, "transactions"), {
             userId: userId,
             email: userData.Email || "",
-            amount: amount,
+            amount: Number(amount),
             type: "Deposit",
             status: "Approved",
             createdAt: new Date()
