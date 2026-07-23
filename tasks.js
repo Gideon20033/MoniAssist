@@ -102,19 +102,44 @@ claimBtn.addEventListener("click", async () => {
     }
 
     const userData = userSnap.data();
-    const reward = 100;
 
+    // Get reward from user's VIP plan
+    const reward = userData.dailyIncome || 0;
+
+    if (reward <= 0) {
+        alert("You don't have an active VIP plan.");
+        return;
+    }
+
+    // Check if already claimed within 24 hours
+    const dailyRef = doc(db, "dailyTasks", currentUser.uid);
+    const dailySnap = await getDoc(dailyRef);
+
+    if (dailySnap.exists()) {
+        const lastClaim = dailySnap.data().claimedAt?.toDate();
+
+        if (lastClaim) {
+            const hours = (new Date() - lastClaim) / (1000 * 60 * 60);
+
+            if (hours < 24) {
+                alert("You have already claimed today's reward.");
+                return;
+            }
+        }
+    }
+
+    // Add reward to balance
     await updateDoc(userRef, {
         Balance: (userData.Balance || 0) + reward
     });
 
-    await setDoc(doc(db, "dailyTasks", currentUser.uid), {
-        date: todayKey(),
-        reward: reward,
-        completed: true,
-        claimedAt: new Date()
+    // Save claim time
+    await setDoc(dailyRef, {
+        claimedAt: new Date(),
+        reward: reward
     });
 
+    // Save transaction
     await addDoc(collection(db, "transactions"), {
         userId: currentUser.uid,
         email: userData.Email || "",
@@ -125,19 +150,7 @@ claimBtn.addEventListener("click", async () => {
     });
 
     claimBtn.disabled = true;
-    claimBtn.textContent = "Reward Claimed Today";
+    claimBtn.textContent = "Reward Claimed";
 
-    alert("Congratulations! ₦100 has been added to your MoniAssist balance.");
-
-});
-claimBtn.disabled = true;
-
-    claimBtn.textContent = "Reward Claimed Today";
-
-    alert(
-        "Congratulations!\n\n" +
-        "₦" + reward.toLocaleString() +
-        " has been added to your balance."
-    );
-
+    alert(`Congratulations!\n\n₦${reward.toLocaleString()} has been added to your balance.`);
 });
