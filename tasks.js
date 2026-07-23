@@ -10,7 +10,8 @@ import {
     setDoc,
     updateDoc,
     addDoc,
-    collection
+    collection,
+    Timestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const taskButtons = document.querySelectorAll(".taskBtn");
@@ -19,10 +20,7 @@ const claimBtn = document.getElementById("claimBtn");
 let completedTasks = 0;
 let currentUser = null;
 
-function todayKey() {
-    const d = new Date();
-    return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
-}
+claimBtn.disabled = true;
 
 onAuthStateChanged(auth, async (user) => {
 
@@ -40,21 +38,26 @@ onAuthStateChanged(auth, async (user) => {
 
         const data = dailySnap.data();
 
-        if (data.date === todayKey()) {
+        if (data.claimedAt) {
 
-    taskButtons.forEach(btn => {
-        btn.disabled = true;
-        btn.textContent = "Completed";
-    });
+            const lastClaim = data.claimedAt.toDate();
+            const hoursPassed =
+                (new Date() - lastClaim) / (1000 * 60 * 60);
 
-    claimBtn.disabled = true;
-    claimBtn.textContent = "Reward Claimed Today";
+            if (hoursPassed < 24) {
 
-    alert("You have already completed today's tasks. Come back after 12:00 AM.");
+                taskButtons.forEach(btn => {
+                    btn.disabled = true;
+                    btn.textContent = "Completed";
+                });
 
-} else {
+                claimBtn.disabled = true;
+                claimBtn.textContent = "Reward Claimed";
 
-    completedTasks = 0;
+                return;
+            }
+        }
+    }
 
     taskButtons.forEach(btn => {
         btn.disabled = false;
@@ -62,11 +65,7 @@ onAuthStateChanged(auth, async (user) => {
     });
 
     claimBtn.disabled = true;
-    claimBtn.textContent = "Claim ₦100";
-
-        }
-
-    }
+    claimBtn.textContent = "Claim Reward";
 
 });
 
@@ -103,7 +102,6 @@ claimBtn.addEventListener("click", async () => {
 
     const userData = userSnap.data();
 
-    // Get reward from user's VIP plan
     const reward = userData.dailyIncome || 0;
 
     if (reward <= 0) {
@@ -111,46 +109,50 @@ claimBtn.addEventListener("click", async () => {
         return;
     }
 
-    // Check if already claimed within 24 hours
     const dailyRef = doc(db, "dailyTasks", currentUser.uid);
     const dailySnap = await getDoc(dailyRef);
 
     if (dailySnap.exists()) {
-        const lastClaim = dailySnap.data().claimedAt?.toDate();
 
-        if (lastClaim) {
-            const hours = (new Date() - lastClaim) / (1000 * 60 * 60);
+        const data = dailySnap.data();
 
-            if (hours < 24) {
+        if (data.claimedAt) {
+
+            const lastClaim = data.claimedAt.toDate();
+
+            const hoursPassed =
+                (new Date() - lastClaim) / (1000 * 60 * 60);
+
+            if (hoursPassed < 24) {
+
                 alert("You have already claimed today's reward.");
+
                 return;
             }
         }
     }
 
-    // Add reward to balance
     await updateDoc(userRef, {
         Balance: (userData.Balance || 0) + reward
     });
 
-    // Save claim time
     await setDoc(dailyRef, {
-        claimedAt: new Date(),
+        claimedAt: Timestamp.now(),
         reward: reward
     });
 
-    // Save transaction
     await addDoc(collection(db, "transactions"), {
         userId: currentUser.uid,
         email: userData.Email || "",
         amount: reward,
         type: "Daily Task Reward",
         status: "Completed",
-        createdAt: new Date()
+        createdAt: Timestamp.now()
     });
 
     claimBtn.disabled = true;
     claimBtn.textContent = "Reward Claimed";
 
     alert(`Congratulations!\n\n₦${reward.toLocaleString()} has been added to your balance.`);
+
 });
