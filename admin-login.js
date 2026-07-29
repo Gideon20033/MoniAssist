@@ -7,45 +7,84 @@ import {
 
 const ADMIN_EMAIL = "jeremiahgideon78@gmail.com";
 
-const emailInput = document.getElementById("email");
-const passwordInput = document.getElementById("password");
-const loginBtn = document.getElementById("loginBtn");
-const message = document.getElementById("message");
+window.addEventListener("DOMContentLoaded", () => {
 
-loginBtn.addEventListener("click", async () => {
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+    const loginBtn = document.getElementById("loginBtn");
+    const message = document.getElementById("message");
 
-    const email = emailInput.value.trim();
-    const password = passwordInput.value.trim();
-
-    if (email === "" || password === "") {
-        message.innerHTML = "Enter email and password";
+    if (!emailInput || !passwordInput || !loginBtn || !message) {
+        console.error("Admin login HTML elements not found.");
         return;
     }
 
-    try {
+    loginBtn.addEventListener("click", async (e) => {
+        e.preventDefault();
 
-        const userCredential = await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
+        message.style.color = "red";
+        message.textContent = "";
 
-        if (userCredential.user.email !== ADMIN_EMAIL) {
-            await signOut(auth);
-            message.innerHTML = "Access denied!";
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        if (!email || !password) {
+            message.textContent = "Please enter your email and password.";
             return;
         }
 
-        message.style.color = "green";
-        message.innerHTML = "Login successful";
+        loginBtn.disabled = true;
+        loginBtn.textContent = "Logging in...";
 
-        setTimeout(() => {
-            window.location.href = "admin-dashboard.html";
-        }, 1000);
+        try {
+            const userCredential = await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
 
-    } catch (error) {
-        message.style.color = "red";
-        message.innerHTML = "Invalid email or password";
-    }
+            if (userCredential.user.email !== ADMIN_EMAIL) {
+                await signOut(auth);
+                message.textContent = "Access denied!";
+                loginBtn.disabled = false;
+                loginBtn.textContent = "Login";
+                return;
+            }
+
+            message.style.color = "green";
+            message.textContent = "Login successful!";
+
+            setTimeout(() => {
+                window.location.href = "admin-dashboard.html";
+            }, 1000);
+
+        } catch (error) {
+            console.error(error);
+
+            message.style.color = "red";
+
+            switch (error.code) {
+                case "auth/invalid-email":
+                    message.textContent = "Invalid email address.";
+                    break;
+
+                case "auth/user-not-found":
+                case "auth/invalid-credential":
+                case "auth/wrong-password":
+                    message.textContent = "Invalid email or password.";
+                    break;
+
+                case "auth/too-many-requests":
+                    message.textContent = "Too many attempts. Try again later.";
+                    break;
+
+                default:
+                    message.textContent = error.message;
+            }
+
+            loginBtn.disabled = false;
+            loginBtn.textContent = "Login";
+        }
+    });
 
 });
