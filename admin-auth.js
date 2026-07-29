@@ -12,7 +12,7 @@ export function protectAdminPage() {
     onAuthStateChanged(auth, async (user) => {
 
         if (!user) {
-            window.location.href = "admin-login.html";
+            window.location.href = "ma-control-7842.html";
             return;
         }
 
@@ -22,7 +22,7 @@ export function protectAdminPage() {
 
             await signOut(auth);
 
-            window.location.href = "login.html";
+            window.location.href = "ma-control-7842.html";
             return;
         }
 
